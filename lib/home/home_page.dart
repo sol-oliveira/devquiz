@@ -22,7 +22,10 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            Row(
+            SizedBox(
+              height: 24
+              ),
+            Row(              
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 LevelButtonWidget(
@@ -39,7 +42,22 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            QuizCardWidget(),
+            SizedBox(
+              height: 24
+            ),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,  
+                mainAxisSpacing: 16,            
+                children: [
+                  QuizCardWidget(),
+                  QuizCardWidget(),
+                  QuizCardWidget()
+                ]               
+              )  
+            )
+                      
           ],
         ),
       ),
