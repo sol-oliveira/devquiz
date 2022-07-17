@@ -8,8 +8,14 @@ import 'package:DevQuiz/shared/widgets/progress_indicator/progress_indicator_wid
 class QuizCardWidget extends StatelessWidget {
   final String title;
   final String completed;
+  final double percent;
 
-  const QuizCardWidget ({Key? key, required this.title, required this.completed}) 
+  const QuizCardWidget ({
+    Key? key, 
+    required this.title, 
+    required this.completed, 
+    required this.percent
+  }) 
   : super(key: key);
 
   @override
@@ -48,7 +54,7 @@ class QuizCardWidget extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 4,
-                  child: ProgressIndicatorWidget(value: 0.3),
+                  child: ProgressIndicatorWidget(value: percent),
                 ),
               ]),
           ],
