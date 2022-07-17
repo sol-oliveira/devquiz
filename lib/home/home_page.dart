@@ -61,7 +61,10 @@ class _HomePageState extends State<HomePage> {
                 mainAxisSpacing: 16,            
                 children: 
                   controller.quizzes!
-                  .map((e) => QuizCardWidget()).toList(),                            
+                  .map((e) => QuizCardWidget(
+                    title: e.title,
+                    completed: "${e.questionAnswsered}/${e.questions.length}"
+                  )).toList(),                            
               ),
             ),
             ],
