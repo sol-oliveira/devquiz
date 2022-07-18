@@ -70,8 +70,8 @@ class _HomePageState extends State<HomePage> {
                       controller.quizzes!
                       .map((e) => QuizCardWidget(
                         title: e.title,
-                        percent: e.questionAnswsered/e.questions.length,
-                        completed: "${e.questionAnswsered}/${e.questions.length}"
+                        percent: e.questionAnswered/e.questions.length,
+                        completed: "${e.questionAnswered}/${e.questions.length}"
                       )).toList(),                            
                   ),
                 ),
