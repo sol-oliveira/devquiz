@@ -1,10 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:DevQuiz/shared/models/awnser_model.dart';
 import 'package:DevQuiz/shared/models/question_model.dart';
 
-enum Level {facil, medio, dificil, perito}
+enum Level { facil, medio, dificil, perito }
 
 extension LevelStringExt on String {
   Level get parse => {
@@ -27,40 +25,41 @@ extension LevelExt on Level {
 class QuizModel {
   final String title;
   final List<QuestionModel> questions;
-  final int questionAnswsered;
-  final String image;
+  final int questionAnswered;
+  final String imagem;
   final Level level;
 
   QuizModel({
     required this.title,
     required this.questions,
-    this.questionAnswsered = 0,
-    required this.image,
+    this.questionAnswered = 0,
+    required this.imagem,
     required this.level,
-    List<AwnserModel>? awnsers,
   });
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'title': title,
       'questions': questions.map((x) => x.toMap()).toList(),
-      'questionAnswsered': questionAnswsered,
-      'image': image,
+      'questionAnswered': questionAnswered,
+      'imagem': imagem,
       'level': level.parse,
     };
   }
 
   factory QuizModel.fromMap(Map<String, dynamic> map) {
     return QuizModel(
-      title: map['title'] as String,
-      questions: List<QuestionModel>.from((map['questions'] as List<int>).map<QuestionModel>((x) => QuestionModel.fromMap(x as Map<String,dynamic>),),),
-      questionAnswsered: map['questionAnswsered'] as int,
-      image: map['image'] as String,
+      title: map['title'],
+      questions: List<QuestionModel>.from(
+          map['questions']?.map((x) => QuestionModel.fromMap(x))),
+      questionAnswered: map['questionAnswered'],
+      imagem: map['imagem'],
       level: map['level'].toString().parse,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory QuizModel.fromJson(String source) => QuizModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory QuizModel.fromJson(String source) =>
+      QuizModel.fromMap(json.decode(source));
 }

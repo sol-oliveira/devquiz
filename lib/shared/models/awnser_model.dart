@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class AwnserModel {
@@ -10,9 +9,8 @@ class AwnserModel {
     this.isRight = false,
   });
 
-
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'title': title,
       'isRight': isRight,
     };
@@ -20,12 +18,13 @@ class AwnserModel {
 
   factory AwnserModel.fromMap(Map<String, dynamic> map) {
     return AwnserModel(
-      title: map['title'] as String,
-      isRight: map['isRight'] as bool,
+      title: map['title'],
+      isRight: map['isRight'] ?? false,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory AwnserModel.fromJson(String source) => AwnserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory AwnserModel.fromJson(String source) =>
+      AwnserModel.fromMap(json.decode(source));
 }
