@@ -1,4 +1,5 @@
 
+import 'package:DevQuiz/challenge/challenge_page.dart';
 import 'package:DevQuiz/core/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -71,7 +72,14 @@ class _HomePageState extends State<HomePage> {
                       .map((e) => QuizCardWidget(
                         title: e.title,
                         percent: e.questionAnswered/e.questions.length,
-                        completed: "${e.questionAnswered}/${e.questions.length}"
+                        completed: "${e.questionAnswered}/${e.questions.length}",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChallengePage()));
+                          print("Clicou");
+                        }
                       )).toList(),                            
                   ),
                 ),
