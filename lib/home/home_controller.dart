@@ -11,10 +11,10 @@ class HomeController{
   set state(HomeState state) => stateNotifier.value = state;
   HomeState get state => stateNotifier.value;
 
-  final repository = HomeRepository();
-
   UserModel? user;
   List<QuizModel>? quizzes;
+
+   final repository = HomeRepository();
 
   void getUser() async {
     state = HomeState.loading;    
