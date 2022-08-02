@@ -40,7 +40,8 @@ class _QuizWidgetState extends State<QuizWidget> {
           onTap: (){
             indexSelected = i ;
             setState((){ }); 
-          }
+          }, 
+          disabled: indexSelected != -1,
         ),
         ],
       ), 
