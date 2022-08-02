@@ -9,7 +9,13 @@ import 'package:DevQuiz/core/app_text_styles.dart';
 
 class QuizWidget extends StatefulWidget {
   final QuestionModel question;
-  const QuizWidget({Key? key, required this.question}) : super(key: key);
+  final VoidCallback onchange;
+
+  const QuizWidget({
+    Key? key, 
+    required this.question, 
+    required this.onchange
+  }) : super(key: key);
 
   @override
   State<QuizWidget> createState() => _QuizWidgetState();
@@ -38,10 +44,13 @@ class _QuizWidgetState extends State<QuizWidget> {
           awnser : awnser(i),
           isSelected: indexSelected == i,
           onTap: (){
-            indexSelected = i ;
+            indexSelected = i ;            
             setState((){ }); 
+            Future.delayed(
+              Duration(seconds: 1))
+              .then((value) => widget.onchange());
           }, 
-          disabled: indexSelected != -1,
+          disabled: indexSelected != -1,         
         ),
         ],
       ), 
