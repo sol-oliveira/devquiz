@@ -1,6 +1,7 @@
 import 'package:DevQuiz/challenge/widgets/next_button/next_button_widget.dart';
 import 'package:DevQuiz/core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 
 class ResultPage extends StatelessWidget {
@@ -60,7 +61,9 @@ class ResultPage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 68),
                       child: NextButtonWidget.purple(
                           label: "Compartilhar",
-                          ontap: () {},),
+                          ontap: () {
+                            Share.share('DevQuiz NLW 5 - Flutter: Resultado do Quiz: $title/n Obtive ${result / length}% de aproveitamento!');
+                          },),
                     )),
                   ],
                 ),
