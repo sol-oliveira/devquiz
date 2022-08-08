@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 
 class ChallengePage extends StatefulWidget {
   final List<QuestionModel> questions;
-  const ChallengePage({Key? key, required this.questions}) : super(key: key);
+  final String title;
+  const ChallengePage({Key? key, required this.questions, required this.title}) : super(key: key);
 
   @override
   State<ChallengePage> createState() => _ChallengePageState();
@@ -29,6 +30,13 @@ class _ChallengePageState extends State<ChallengePage> {
   void nextPage(){
     pageController.nextPage(
         duration: Duration(milliseconds: 100), curve: Curves.linear);              
+  }
+
+  void onSelected(bool value){
+    if(value){
+      controller.qtdAnwserRight++;
+    }
+    nextPage();
   }
   
   @override
@@ -60,7 +68,7 @@ class _ChallengePageState extends State<ChallengePage> {
         controller: pageController,
         children: widget.questions.map(
           ((e) => 
-          QuizWidget(question: e, onchange: nextPage))
+          QuizWidget(question: e, onSelected: onSelected))
           ).toList()
       ),
       bottomNavigationBar: SafeArea(
@@ -83,7 +91,12 @@ class _ChallengePageState extends State<ChallengePage> {
                               child: NextButtonWidget.green(
                             label: "Confirmar",
                             ontap: () { 
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage()));
+                              Navigator.pushReplacement(context, MaterialPageRoute(
+                                builder: (context) => ResultPage(
+                                  title: widget.title, 
+                                  length: widget.questions.length,
+                                  result: controller.qtdAnwserRight,
+                                )));
                             },
                           )),
                       ],
